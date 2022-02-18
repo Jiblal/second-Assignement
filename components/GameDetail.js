@@ -99,31 +99,32 @@ export default function GameDetail() {
     
     // Dice color
     function getDiceColor(i) {
-        
-            return selectedDices[i] ? 'black':'steelblue';
-        
+       return selectedDices[i] ? 'black':'steelblue';
     }
-    // circle color
+    // numeric circle color
     function getCircleColor(i) {
-        
-        
-            return selectedNumberCircle[i] ? 'black':'steelblue';
-       
+        return selectedNumberCircle[i] ? 'black':'steelblue';
     }
     // toggle dice
     function selectDice(i) {
+        if(nbrOfThrowsLeft===3){
+            setStatus('Your have to throw dice first')
+        }
+        else{
         
-        let val= tempArray[i]
-        // verifying if the Number is already selected, if yes, user is not allowed to select 
-        // that number
-        if(selectedNumberCircle[val-1]){
-            setStatus('You already selected '+ val)
-        }else{
+            let val= tempArray[i]
+            // verifying if the Number is already selected, if yes, user is not allowed to select 
+            // that number
+            if(selectedNumberCircle[val-1]){
+                setStatus('You have already selected '+ val)
+            }
+            else{
 
-            let dices =[... selectedDices];
-            dices[i]= selectedDices[i]? false : true;
-            console.log(dices[i])
-            setSelectedDices(dices)
+                let dices =[... selectedDices];
+                dices[i]= selectedDices[i]? false : true;
+                console.log(dices[i])
+                setSelectedDices(dices)
+            }
         }
         
     }
@@ -160,21 +161,12 @@ export default function GameDetail() {
             tempSumArray[i]= localSum;
             setArraySum(tempSumArray);
             
-                //setBonusPoints(bonuspoints-10)
-            
-        
-            //console.log('Total in bonus points'+ total)
-
-            // point selected or not
+            // point selected is set true
             setIsPointSelected(true)
-            // clear tempArray and selectedDices
+            // clear tempArray and selectedDices arrays
             clear();
-
-            // function for calculating sum of Arraysum
             
-            
-
-                // toggle Numeric circle
+            // toggle Numeric circle
             let NumberCircles =[...selectedNumberCircle];
             NumberCircles[i] = selectedNumberCircle[i]?false:true;
             setSelectedNumberCircle(NumberCircles)
@@ -214,11 +206,10 @@ export default function GameDetail() {
                     //console.log('at throw dices:'+letTemp);
                     
                 }
-                // show one step behind problem: solved by updating TempArray in UseEffect
-            
+             
             }
             setTempArray( ()=>{setTempArray(letTemp)});
-                
+              // show one step behind problem: solved by updating TempArray in UseEffect   
             //console.log('after random value:'+tempArray);
                     
             
@@ -244,9 +235,6 @@ export default function GameDetail() {
         //throwDieces()
         setNbrOfThrowsLeft(NBR_OF_Throws)
         setStatus('throw your Dices')
-        
-
-
     }
     
 
