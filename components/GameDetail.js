@@ -2,6 +2,7 @@ import { View, Text, Pressable } from 'react-native'
 import React, { useState, useEffect} from 'react'
 import styles from '../style/style'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import style from '../style/style';
 //<MaterialCommunityIcons name="numeric-1-circle" size={24} color="black" />
 
 const NBR_OF_DICES = 5;
@@ -243,11 +244,11 @@ export default function GameDetail() {
   return (
     <View >
       <View style={styles.flex}>{row}</View>
-      <Text> Throws left:{nbrOfThrowsLeft} </Text>
-      <Text> {status}</Text>
+      <Text style={styles.gameinfo}> Throws left:{nbrOfThrowsLeft} </Text>
+      <Text style={styles.gameinfo} > {status}</Text>
       <Pressable style={styles.button}
         onPress={()=> throwDieces()}  >
-        <Text>Throw dices</Text>
+        <Text >Throw dices</Text>
        </Pressable>
        <Text style={styles.total}>Total:{total} </Text>
        <Text>{(bonuspoints-total)<=0?

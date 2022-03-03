@@ -43,7 +43,7 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     textAlign: 'center',
     justifyContent: 'center',
-    fontSize: 20,
+    
     marginTop: 10
   },
   row: {
@@ -55,10 +55,8 @@ export default StyleSheet.create({
   },
   button: {
     margin: 30,
-    flexDirection: "row",
     padding: 10,
     backgroundColor: "#73CED6",
-    width: 150,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center'
@@ -73,6 +71,8 @@ export default StyleSheet.create({
   },
   total:{
     fontSize: 20,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
