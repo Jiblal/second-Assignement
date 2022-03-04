@@ -40,8 +40,8 @@ export default function GameDetail() {
         // if(nbrOfThrowsLeft===0){
         //     setStatus('select your points')
         // }
-        console.log('from use effec after theow'+tempArray);
-        console.log("testing"+arraySum)
+       // console.log('from use effec after theow'+tempArray);
+       // console.log("testing"+arraySum)
         calculationgTotal(arraySum)
 
         // comparing if game is over. It is compared by comparing all selected circle
@@ -123,7 +123,6 @@ export default function GameDetail() {
 
                 let dices =[... selectedDices];
                 dices[i]= selectedDices[i]? false : true;
-                console.log(dices[i])
                 setSelectedDices(dices)
             }
         }
@@ -150,11 +149,16 @@ export default function GameDetail() {
         if(allow && nbrOfThrowsLeft===0){
             
             let localSum =0
-            console.log('TemArrary from select numeirfc '+ tempArray)
+           // console.log('TemArrary from select numeirfc '+ tempArray)
             for (let i = 0; i < tempArray.length; i++) {
             if(selectedDices[i]){
                     localSum += tempArray[i]
                 }
+                // new logic
+            else if(!selectedDices[i] && nbrOfThrowsLeft===0 && tempArray[i]===value ){
+                localSum += tempArray[i]
+
+            }
             }
             // set localsum value in to the array of  sumArray
             //console.log('local sum:'+ localSum)
@@ -175,7 +179,12 @@ export default function GameDetail() {
             
         }
         else{
-            setStatus('Throw 3 times before setting points')
+            if(!allow && nbrOfThrowsLeft===0){
+                setStatus(' Selected Nummeric circle doesnot match with selected point. \n Select right numeric circle')
+            }
+            else{
+                setStatus('Throw 3 times before setting points')
+            }
         }
         
 
