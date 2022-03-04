@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native'
 import React, { useState, useEffect} from 'react'
 import styles from '../style/style'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import style from '../style/style';
+
 //<MaterialCommunityIcons name="numeric-1-circle" size={24} color="black" />
 
 const NBR_OF_DICES = 5;
