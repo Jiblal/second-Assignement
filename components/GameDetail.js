@@ -27,7 +27,6 @@ export default function GameDetail() {
     getNumericCirlce()
     useEffect(()=>{
         if(nbrOfThrowsLeft === NBR_OF_Throws){
-            // setStatus('game is not started yet')
             console.log('Game started')
         }
         if(nbrOfThrowsLeft===0){
