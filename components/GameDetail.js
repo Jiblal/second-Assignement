@@ -15,15 +15,14 @@ const BONUS = 63;
 
 export default function GameDetail() {
     const [nbrOfThrowsLeft, setNbrOfThrowsLeft]= useState(NBR_OF_Throws);
-    const [sum, setSum  ]= useState(0);
     const [status, setStatus]= useState('Throw dices');
     const [selectedDices, setSelectedDices] = useState(new Array(NBR_OF_DICES).fill(false));
     const [selectedNumberCircle, setSelectedNumberCircle]= useState(new Array(NBR_OF_Numeric_Circle).fill(false))
-    const [arraySum, setArraySum ]= useState(new Array(NBR_OF_Numeric_Circle).fill(0))
-    const [tempArray, setTempArray]= useState(new Array(NBR_OF_DICES).fill(0))
+    const [arraySum, setArraySum ]= useState(new Array(NBR_OF_Numeric_Circle).fill(0)) // Array for sum of selected points 
+    const [tempArray, setTempArray]= useState(new Array(NBR_OF_DICES).fill(0)) // Array for Random number which is used to put value in ArraySum
     const [bonuspoints, setBonusPoints]= useState(BONUS);
-    const [isPointSelected, setIsPointSelected]= useState(false)
-    const [total, setTotal]= useState(0)
+    const [isPointSelected, setIsPointSelected]= useState(false) // used to find out if Numeric circle is selected when nbrOfThrowsLeft === 0 
+    const [total, setTotal]= useState(0) // sum of all Arraysum Value
     
     getNumericCirlce()
     useEffect(()=>{
@@ -62,7 +61,7 @@ export default function GameDetail() {
      
     }
 
-    const row=[];
+    const row=[]; // array of  random Dices
     for (let i = 0; i < NBR_OF_DICES; i++) {
         row.push(
             <Pressable
@@ -78,7 +77,7 @@ export default function GameDetail() {
         )
         
     }
-    const circleRow=[];
+    const circleRow=[]; // array of numeric circle
     for (let i = 0; i < NBR_OF_Numeric_Circle; i++) {
         circleRow.push(
             <View key={'circle'+i}>
@@ -109,7 +108,7 @@ export default function GameDetail() {
     // toggle dice
     function selectDice(i) {
         if(nbrOfThrowsLeft===3){
-            setStatus('Your have to throw dice first')
+            setStatus('You have to throw dice first')
         }
         else{
         
@@ -180,7 +179,7 @@ export default function GameDetail() {
         }
         else{
             if(!allow && nbrOfThrowsLeft===0){
-                setStatus(' Selected Nummeric circle doesnot match with selected point. \n Select right numeric circle')
+                setStatus(' Selected Nummeric circle doesnot match with selected point. \n Select numeric circle'+` ${value}`)
             }
             else{
                 setStatus('Throw 3 times before setting points')
