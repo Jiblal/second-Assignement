@@ -196,7 +196,10 @@ export default function GameDetail() {
         if(nbrOfThrowsLeft===0 && !isPointSelected){
             setStatus('Select your point before next throw')
         }
+  
         else{
+            if(selectedNumberCircle.every((val)=>(val===true))){
+                restart()  }
             // bringing IsPoint to it's original state
             setIsPointSelected(false)
                     
@@ -245,7 +248,15 @@ export default function GameDetail() {
         setStatus('throw your Dices')
     }
     
+    function restart(){
+        setBonusPoints(63);
+        board= [];
+        NumberCircle =[];
+        setSelectedNumberCircle(new Array(NBR_OF_Numeric_Circle).fill(false));
+        setArraySum(new Array(NBR_OF_Numeric_Circle).fill(0));
+        
 
+    }
         
 
   return (
