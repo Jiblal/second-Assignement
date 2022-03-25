@@ -129,69 +129,76 @@ export default function GameDetail() {
     // toggle Numeric Circle
     function SelectNumericCircle( i) {
         //just before selecting  numeric circle add sum of selected value;
-        // If else statement to varify if selected nurmber is same as selected dices
-        let value= 0;
-        let allow = false;
-        let index= null;
-        for(let j=0; j<tempArray.length; j++){
-            if(selectedDices[j]){
-                value= tempArray[j];
-                index= j
-                break;
-            }
-            
-        }
-        if(value===(i+1)&& selectedDices[index]){
-            allow= true;
-        }
-        if(allow && nbrOfThrowsLeft===0){
-            
-            let localSum =0
-           // console.log('TemArrary from select numeirfc '+ tempArray)
-            for (let i = 0; i < tempArray.length; i++) {
-            if(selectedDices[i]){
-                    localSum += tempArray[i]
-                }
-                // new logic
-            else if(!selectedDices[i] && nbrOfThrowsLeft===0 && tempArray[i]===value ){
-                localSum += tempArray[i]
-
-            }
-            }
-            // set localsum value in to the array of  sumArray
-            //console.log('local sum:'+ localSum)
-            let tempSumArray=[...arraySum];
-            tempSumArray[i]= localSum;
-            setArraySum(tempSumArray);
-            
-            // point selected is set true
-            setIsPointSelected(true)
-            // clear tempArray and selectedDices arrays
-            clear();
-            
-            // toggle Numeric circle
-            let NumberCircles =[...selectedNumberCircle];
-            NumberCircles[i] = selectedNumberCircle[i]?false:true;
-            setSelectedNumberCircle(NumberCircles)
-            // sumOfDices(sum, i)
-            
-        }
+            // If else statement to varify if selected nurmber is same as selected dices
+        if(selectedNumberCircle[i]===true){
+          setStatus(`you have already selected points for ${i+1}`)  
+        }   
         else{
-            if(!allow && nbrOfThrowsLeft===0){
-                setStatus(' Selected Nummeric circle doesnot match with selected point. \n Select numeric circle'+` ${value}`)
-               // point 0 is now possible
+            let value= 0;
+            let allow = false;
+            let index= null;
+            for(let j=0; j<tempArray.length; j++){
+                if(selectedDices[j]){
+                    value= tempArray[j];
+                    index= j
+                    break;
+                }
                 
-                    let NumberCircles =[...selectedNumberCircle];
-                    NumberCircles[i] = selectedNumberCircle[i]?false:true;
-                    setSelectedNumberCircle(NumberCircles)
+            }
+            if(value===(i+1)&& selectedDices[index]){
+                allow= true;
+            }
+            if(allow && nbrOfThrowsLeft===0){
+                
+                let localSum =0
+            // console.log('TemArrary from select numeirfc '+ tempArray)
+                for (let i = 0; i < tempArray.length; i++) {
+                if(selectedDices[i]){
+                        localSum += tempArray[i]
+                    }
+                    // new logic
+                else if(!selectedDices[i] && nbrOfThrowsLeft===0 && tempArray[i]===value ){
+                    localSum += tempArray[i]
 
-                    setIsPointSelected(true)
-                    // clear tempArray and selectedDices arrays
-                    clear();
+                }
+                }
+                // set localsum value in to the array of  sumArray
+                //console.log('local sum:'+ localSum)
+                let tempSumArray=[...arraySum];
+                tempSumArray[i]= localSum;
+                setArraySum(tempSumArray);
+                
+                // point selected is set true
+                setIsPointSelected(true)
+                // clear tempArray and selectedDices arrays
+                clear();
+                
+                // toggle Numeric circle
+                let NumberCircles =[...selectedNumberCircle];
+                NumberCircles[i] = selectedNumberCircle[i]?false:true;
+                setSelectedNumberCircle(NumberCircles)
+                // sumOfDices(sum, i)
                 
             }
             else{
-                setStatus('Throw 3 times before setting points')
+                if(!allow && nbrOfThrowsLeft===0){
+                    
+                // point 0 is now possible
+                    
+                        let NumberCircles =[...selectedNumberCircle];
+                        if (selectedNumberCircle[i]===false){
+                            NumberCircles[i] = true;
+                            setSelectedNumberCircle(NumberCircles)
+
+                            setIsPointSelected(true)
+                        }
+                        // clear tempArray and selectedDices arrays
+                        clear();
+                    
+                }
+                else{
+                    setStatus('Throw 3 times before setting points')
+                }
             }
         }
         
