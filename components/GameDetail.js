@@ -179,6 +179,16 @@ export default function GameDetail() {
         else{
             if(!allow && nbrOfThrowsLeft===0){
                 setStatus(' Selected Nummeric circle doesnot match with selected point. \n Select numeric circle'+` ${value}`)
+               // point 0 is now possible
+                
+                    let NumberCircles =[...selectedNumberCircle];
+                    NumberCircles[i] = selectedNumberCircle[i]?false:true;
+                    setSelectedNumberCircle(NumberCircles)
+
+                    setIsPointSelected(true)
+                    // clear tempArray and selectedDices arrays
+                    clear();
+                
             }
             else{
                 setStatus('Throw 3 times before setting points')
