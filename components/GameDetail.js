@@ -151,7 +151,7 @@ export default function GameDetail() {
             if(allow && nbrOfThrowsLeft===0){
                 
                 let localSum =0
-            // console.log('TemArrary from select numeirfc '+ tempArray)
+             // console.log('TemArrary from select numeirfc '+ tempArray)
                 for (let i = 0; i < tempArray.length; i++) {
                 if(selectedDices[i]){
                         localSum += tempArray[i]
@@ -182,18 +182,18 @@ export default function GameDetail() {
             }
             else{
                 if(!allow && nbrOfThrowsLeft===0){
-                    
-                // point 0 is now possible
-                    
-                        let NumberCircles =[...selectedNumberCircle];
-                        if (selectedNumberCircle[i]===false){
-                            NumberCircles[i] = true;
-                            setSelectedNumberCircle(NumberCircles)
-
-                            setIsPointSelected(true)
-                        }
-                        // clear tempArray and selectedDices arrays
-                        clear();
+                        
+                    // point 0 is now possible
+                        
+                        
+                    // toggle Numeric circle
+                    let NumberCircles =[...selectedNumberCircle];
+                    NumberCircles[i] = selectedNumberCircle[i]?false:true;
+                    setSelectedNumberCircle(NumberCircles)
+                    setIsPointSelected(true)
+                        
+                    // clear tempArray and selectedDices arrays
+                    clear();
                     
                 }
                 else{
